@@ -14,7 +14,8 @@ import java.time.LocalDateTime;
 @Setter
 public class Customer {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY) // 전략은 네 가지가 있다. AUTO, TABLE, SEQUENCE, IDENTITY
+    // 오라클, PostgreSQL : SEQUENCE, Mysql, MariaDB : IDENTITY
     private Long id;
 
     @Column(name = "cust_id", unique = true, nullable = false)
@@ -22,6 +23,8 @@ public class Customer {
 
     @Column(name = "cust_name", nullable = false)
     private String customerName;
+
+//    private String test;
 
     @Column(nullable = false, updatable = false)
     @CreationTimestamp
