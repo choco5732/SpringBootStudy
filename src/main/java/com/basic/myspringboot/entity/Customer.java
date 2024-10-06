@@ -4,12 +4,14 @@ import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.DynamicInsert;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 @Entity
 @Table(name = "customers")
+@DynamicInsert // 전체 update가 아닌 선택한 항목만 업데이트 해주는 애노테이션
 @Getter
 @Setter
 public class Customer {

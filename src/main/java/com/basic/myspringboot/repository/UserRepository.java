@@ -9,5 +9,4 @@ import java.util.Optional;
 public interface UserRepository extends JpaRepository<User, Long> {
     List<User> findByName(String name); // name은  unique가 아니라 결과가 여러개 나올 수 있어서 Optional -> List
     Optional<User> findByEmail(String email);
-
 }

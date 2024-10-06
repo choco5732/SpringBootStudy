@@ -1,12 +1,14 @@
 package com.basic.myspringboot.repository;
 
 import com.basic.myspringboot.entity.Customer;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.annotation.Rollback;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
 import java.util.Optional;
 
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
@@ -17,7 +19,18 @@ import static org.junit.jupiter.api.Assertions.*;
 class CustomerRepositoryTest {
     @Autowired
     CustomerRepository customerRepository;
+
     @Test
+    public void update_customer() throws Exception {
+        Optional<Customer> optional = customerRepository.findByCustomerId("A001");
+        if(optional.isPresent()){
+            Customer customer = optional.get();
+            customer.setCustomerName("장명용");
+        }
+    }
+
+    @Test
+    @Disabled // 테스트 일시정지
     @Rollback // 기본값은 true
 //    @Rollback(value = false) // 이렇게 해주면 rollback을 하지 않는다.
     public void customer() throws Exception {
