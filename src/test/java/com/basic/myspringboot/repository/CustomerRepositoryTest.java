@@ -1,6 +1,7 @@
 package com.basic.myspringboot.repository;
 
 import com.basic.myspringboot.entity.Customer;
+import com.basic.myspringboot.entity.User;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,8 +20,25 @@ import static org.junit.jupiter.api.Assertions.*;
 class CustomerRepositoryTest {
     @Autowired
     CustomerRepository customerRepository;
+    @Autowired
+    private UserRepository userRepository;
 
     @Test
+    @Disabled
+    @Rollback(value = false)
+    public void user_insert() throws Exception {
+        User user = new User();
+        user.setName("장명용");
+        user.setEmail("choco5732@gmail.com");
+
+        User savedUser = userRepository.save(user);
+        assertThat(savedUser).isNotNull();
+    }
+
+
+    @Test
+    @Rollback(value =false)
+    @Disabled
     public void update_customer() throws Exception {
         Optional<Customer> optional = customerRepository.findByCustomerId("A001");
         if(optional.isPresent()){

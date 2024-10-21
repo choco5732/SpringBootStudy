@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>인덱스</title>
+</head>
+<body>
+<table>
+    <tr>
+        <th>Name</th>
+        <th>Email</th>
+        <th>EntryDate</th>
+    </tr>
+    <tr th:each="user : ${users}">
+        <td th:text= "${user.name}"></td>
+        <td th:text= "${user.email}"></td>
+        <td th:text= "${#temporals.format(user.createdAt,'yyyy-MM-dd hh:mm E a')}"></td>
+    </tr>
+</table>
+<p>
+    <a href="/signup">Insert</a>
+</p>
+</body>
+</html>
